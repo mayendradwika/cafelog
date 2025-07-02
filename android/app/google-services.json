@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983824085545",
+    "project_id": "e-commerse-10d21",
+    "storage_bucket": "e-commerse-10d21.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983824085545:android:fa015d2db5560fdc316238",
+        "android_client_info": {
+          "package_name": "com.company.cafelog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqC8KHgs24no3pLa3DxJRvUWd9jG9y-u0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
