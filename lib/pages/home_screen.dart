@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       imageAssetPath: "assets/images/bannerslide3.jpeg",
       description: "Kombinasi espresso, susu, dan sirup karamel.",
       price: 25000,
-      cafeName: "Kedai Kopi Kenangan",
+      cafeName: "Kopi Kenangan",
       distanceKm: 1.2,
     ),
     Product(

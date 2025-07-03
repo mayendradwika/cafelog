@@ -21,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
       imageAssetPath: "assets/images/bannerslide3.jpeg",
       description: "Kombinasi espresso, susu, dan sirup karamel.",
       price: 25000,
-      cafeName: "Kedai Kopi Kenangan",
+      cafeName: "Kopi Kenangan",
       distanceKm: 1.2,
     ),
     Product(
@@ -122,7 +122,8 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               if (filteredProducts.isNotEmpty) ...[
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Text(
                     "Produk",
                     style: TextStyle(
@@ -138,8 +139,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         height: 50.h,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(product.name, style: TextStyle(fontSize: 14.sp)),
-                      subtitle: Text("Rp ${product.price}", style: TextStyle(fontSize: 12.sp)),
+                      title:
+                          Text(product.name, style: TextStyle(fontSize: 14.sp)),
+                      subtitle: Text("Rp ${product.price}",
+                          style: TextStyle(fontSize: 12.sp)),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -152,7 +155,8 @@ class _SearchScreenState extends State<SearchScreen> {
               ],
               if (filteredCafes.isNotEmpty) ...[
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                   child: Text(
                     "Tempat",
                     style: TextStyle(
@@ -169,7 +173,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         fit: BoxFit.cover,
                       ),
                       title: Text(cafe.name, style: TextStyle(fontSize: 14.sp)),
-                      subtitle: Text("${cafe.distanceKm} km", style: TextStyle(fontSize: 12.sp)),
+                      subtitle: Text("${cafe.distanceKm} km",
+                          style: TextStyle(fontSize: 12.sp)),
                       onTap: () {
                         Navigator.push(
                           context,
