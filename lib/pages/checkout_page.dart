@@ -1,5 +1,5 @@
-// lib/pages/checkout_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 
@@ -13,11 +13,15 @@ class CheckoutPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Checkout"),
-          backgroundColor: const Color.fromARGB(255, 81, 64, 231),
-          foregroundColor: Colors.white),
+        title: Text(
+          "Checkout",
+          style: TextStyle(fontSize: 20.sp),
+        ),
+        backgroundColor: const Color.fromARGB(255, 81, 64, 231),
+        foregroundColor: Colors.white,
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16.w),
         child: Column(
           children: [
             Expanded(
@@ -26,21 +30,31 @@ class CheckoutPage extends StatelessWidget {
                 itemBuilder: (_, index) {
                   final item = cartItems[index];
                   return ListTile(
-                    title: Text(item.product.name),
-                    subtitle:
-                        Text("Rp ${item.product.price} x ${item.quantity}"),
+                    title: Text(
+                      item.product.name,
+                      style: TextStyle(fontSize: 14.sp),
+                    ),
+                    subtitle: Text(
+                      "Rp ${item.product.price} x ${item.quantity}",
+                      style: TextStyle(fontSize: 12.sp),
+                    ),
                     trailing: Text(
-                        "Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}"),
+                      "Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}",
+                      style: TextStyle(fontSize: 14.sp),
+                    ),
                   );
                 },
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Text(
               "Total: Rp ${cartProvider.totalPrice.toStringAsFixed(0)}",
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -49,27 +63,40 @@ class CheckoutPage extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: const Text("Pembayaran Berhasil"),
-                      content: const Text("Terima kasih sudah berbelanja!"),
+                      title: Text(
+                        "Pembayaran Berhasil",
+                        style: TextStyle(fontSize: 16.sp),
+                      ),
+                      content: Text(
+                        "Terima kasih sudah berbelanja!",
+                        style: TextStyle(fontSize: 14.sp),
+                      ),
                       actions: [
                         TextButton(
-                          child: const Text("OK"),
+                          child: Text(
+                            "OK",
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
                           onPressed: () => Navigator.popUntil(
                               context, (route) => route.isFirst),
-                        )
+                        ),
                       ],
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(vertical: 16.h),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
                   backgroundColor: const Color.fromARGB(255, 81, 64, 231),
                   foregroundColor: Colors.white,
-                  textStyle: const TextStyle(fontSize: 18),
+                  textStyle: TextStyle(fontSize: 18.sp),
                 ),
-                child: const Text("Konfirmasi Pembayaran"),
+                child: Text(
+                  "Konfirmasi Pembayaran",
+                  style: TextStyle(fontSize: 16.sp),
+                ),
               ),
             ),
           ],

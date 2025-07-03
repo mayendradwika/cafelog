@@ -1,6 +1,6 @@
-// lib/pages/profile_tab.dart
 import 'package:cafelog/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({super.key});
@@ -8,47 +8,65 @@ class ProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.w),
       children: [
-        const Center(
+        Center(
           child: CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('assets/images/dev.png'),
+            radius: 50.r,
+            backgroundImage: const AssetImage('assets/images/dev.png'),
           ),
         ),
-        const SizedBox(height: 16),
-        const Center(
+        SizedBox(height: 16.h),
+        Center(
           child: Text(
             "Mayendra Dwika",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        const Center(
+        Center(
           child: Text(
             "mayendradwikaprayudha@gmail.com",
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 14.sp,
+            ),
           ),
         ),
-        const SizedBox(height: 32),
-        const Divider(),
+        SizedBox(height: 32.h),
+        Divider(thickness: 1.h),
         ListTile(
-          leading: const Icon(Icons.receipt),
-          title: const Text("Riwayat Transaksi"),
+          leading: Icon(Icons.receipt, size: 24.sp),
+          title: Text(
+            "Riwayat Transaksi",
+            style: TextStyle(fontSize: 16.sp),
+          ),
           onTap: () {
             // Tambahkan aksi di sini jika perlu
           },
         ),
         ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text("Pengaturan"),
+          leading: Icon(Icons.settings, size: 24.sp),
+          title: Text(
+            "Pengaturan",
+            style: TextStyle(fontSize: 16.sp),
+          ),
           onTap: () {
             // Tambahkan aksi di sini jika perlu
           },
         ),
-        const Divider(),
+        Divider(thickness: 1.h),
         ListTile(
-          leading: const Icon(Icons.logout, color: Colors.red),
-          title: const Text("Logout", style: TextStyle(color: Colors.red)),
+          leading: Icon(Icons.logout, color: Colors.red, size: 24.sp),
+          title: Text(
+            "Logout",
+            style: TextStyle(
+              color: Colors.red,
+              fontSize: 16.sp,
+            ),
+          ),
           onTap: () {
             Navigator.pushReplacement(
               context,

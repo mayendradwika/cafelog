@@ -1,5 +1,5 @@
-// lib/pages/search_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/product.dart';
 import '../models/cafe.dart';
 import 'product_detail_page.dart';
@@ -57,7 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
       description: "Gedung dengan suasana nyaman dan wifi gratis",
       distanceKm: 1.2,
     ),
-     Cafe(
+    Cafe(
       name: "Espresso Bar",
       imageAssetPath: "assets/images/cafe/cafe2.jpeg",
       description: "Alat-alat kopi lengkap dan suasana modern",
@@ -100,41 +100,46 @@ class _SearchScreenState extends State<SearchScreen> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           child: TextField(
             controller: _searchController,
             onChanged: _performSearch,
             decoration: InputDecoration(
               hintText: "Cari apa nih...",
-              prefixIcon: const Icon(Icons.search),
+              prefixIcon: Icon(Icons.search, size: 24.sp),
               filled: true,
-              fillColor: Color.fromARGB(255, 213, 208, 255),
+              fillColor: const Color.fromARGB(255, 213, 208, 255),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
                 borderSide: BorderSide.none,
               ),
             ),
+            style: TextStyle(fontSize: 14.sp),
           ),
         ),
         Expanded(
           child: ListView(
             children: [
               if (filteredProducts.isNotEmpty) ...[
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Text("Produk",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  child: Text(
+                    "Produk",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 ...filteredProducts.map((product) => ListTile(
                       leading: Image.asset(
                         product.imageAssetPath,
-                        width: 50,
-                        height: 50,
+                        width: 50.w,
+                        height: 50.h,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(product.name),
-                      subtitle: Text("Rp ${product.price}"),
+                      title: Text(product.name, style: TextStyle(fontSize: 14.sp)),
+                      subtitle: Text("Rp ${product.price}", style: TextStyle(fontSize: 12.sp)),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -146,21 +151,25 @@ class _SearchScreenState extends State<SearchScreen> {
                     )),
               ],
               if (filteredCafes.isNotEmpty) ...[
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Text("Tempat",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                  child: Text(
+                    "Tempat",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 ...filteredCafes.map((cafe) => ListTile(
                       leading: Image.asset(
                         cafe.imageAssetPath,
-                        width: 50,
-                        height: 50,
+                        width: 50.w,
+                        height: 50.h,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(cafe.name),
-                      subtitle: Text("${cafe.distanceKm} km"),
+                      title: Text(cafe.name, style: TextStyle(fontSize: 14.sp)),
+                      subtitle: Text("${cafe.distanceKm} km", style: TextStyle(fontSize: 12.sp)),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -172,9 +181,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     )),
               ],
               if (filteredProducts.isEmpty && filteredCafes.isEmpty)
-                const Padding(
-                  padding: EdgeInsets.all(32),
-                  child: Center(child: Text("Tidak ada hasil")),
+                Padding(
+                  padding: EdgeInsets.all(32.w),
+                  child: Center(
+                    child: Text(
+                      "Tidak ada hasil",
+                      style: TextStyle(fontSize: 14.sp),
+                    ),
+                  ),
                 ),
             ],
           ),

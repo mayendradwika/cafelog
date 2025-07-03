@@ -1,5 +1,5 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'providers/cart_provider.dart';
 import 'pages/home_screen.dart';
@@ -18,15 +18,22 @@ class CafeLogApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => CartProvider(),
-      child: MaterialApp(
-        title: 'CafeLog',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const WelcomeScreen(),
-          '/login': (context) => LoginScreen(),
-          '/home': (context) => const HomeScreen(),
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690), // ukuran desain dari Figma atau referensi utama
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'CafeLog',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(primarySwatch: Colors.deepPurple),
+            initialRoute: '/',
+            routes: {
+              '/': (context) => const WelcomeScreen(),
+              '/login': (context) => LoginScreen(),
+              '/home': (context) => const HomeScreen(),
+            },
+          );
         },
       ),
     );

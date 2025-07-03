@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/product.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
@@ -15,7 +16,10 @@ class ProductDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 81, 64, 231),
         foregroundColor: Colors.white,
-        title: Text(product.name),
+        title: Text(
+          product.name,
+          style: TextStyle(fontSize: 18.sp),
+        ),
       ),
       body: Column(
         children: [
@@ -24,7 +28,7 @@ class ProductDetailPage extends StatelessWidget {
             tag: product.imageAssetPath,
             child: Image.asset(
               product.imageAssetPath,
-              height: 250,
+              height: 250.h,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
@@ -33,15 +37,14 @@ class ProductDetailPage extends StatelessWidget {
           // Info Produk
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(10)),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10.r)),
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 6,
-                    color: Colors.black87,
+                    color: Colors.black87.withOpacity(0.15),
                     offset: const Offset(0, -2),
                   )
                 ],
@@ -50,48 +53,53 @@ class ProductDetailPage extends StatelessWidget {
                 children: [
                   Text(
                     product.name,
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 22.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
 
-                  // Cafe dan jarak
+                  // Cafe dan Jarak
                   Row(
                     children: [
-                      const Icon(Icons.store, size: 16, color: Colors.black87),
-                      const SizedBox(width: 6),
-                      Text(product.cafeName),
-                      const SizedBox(width: 12),
-                      const Icon(Icons.location_on,
-                          size: 16, color: Colors.black87),
-                      const SizedBox(width: 6),
-                      Text("${product.distanceKm.toStringAsFixed(1)} km"),
+                      Icon(Icons.store, size: 16.sp, color: Colors.black87),
+                      SizedBox(width: 6.w),
+                      Text(product.cafeName, style: TextStyle(fontSize: 14.sp)),
+                      SizedBox(width: 12.w),
+                      Icon(Icons.location_on,
+                          size: 16.sp, color: Colors.black87),
+                      SizedBox(width: 6.w),
+                      Text("${product.distanceKm.toStringAsFixed(1)} km",
+                          style: TextStyle(fontSize: 14.sp)),
                     ],
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
 
                   // Harga
                   Text(
                     "Rp ${product.price.toStringAsFixed(0)}",
-                    style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 81, 64, 231)),
+                    style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 81, 64, 231),
+                    ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
 
                   // Deskripsi
-                  const Text(
+                  Text(
                     "Deskripsi",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 16.sp, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8.h),
                   Text(
                     product.description,
-                    style: const TextStyle(fontSize: 15, height: 1.4),
+                    style: TextStyle(fontSize: 14.5.sp, height: 1.4),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
                 ],
               ),
             ),
@@ -101,10 +109,10 @@ class ProductDetailPage extends StatelessWidget {
 
       // Tombol Bawah
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: const BoxDecoration(
+        padding: EdgeInsets.all(16.w),
+        decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4.r)],
         ),
         child: SizedBox(
           width: double.infinity,
@@ -113,21 +121,25 @@ class ProductDetailPage extends StatelessWidget {
               Provider.of<CartProvider>(context, listen: false)
                   .addToCart(product);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                    content: Text("Produk ditambahkan ke keranjang")),
+                SnackBar(
+                  content: Text(
+                    "Produk ditambahkan ke keranjang",
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
+                ),
               );
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 81, 64, 231),
-              iconColor: Colors.white,
+              backgroundColor: const Color.fromARGB(255, 81, 64, 231),
               foregroundColor: Colors.white,
-              textStyle: const TextStyle(fontSize: 16),
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.symmetric(vertical: 16.h),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              textStyle: TextStyle(fontSize: 16.sp),
             ),
-            icon: const Icon(Icons.add_shopping_cart),
-            label: const Text("Tambah ke Keranjang"),
+            icon: Icon(Icons.add_shopping_cart, size: 20.sp),
+            label: Text("Tambah ke Keranjang", style: TextStyle(fontSize: 16.sp)),
           ),
         ),
       ),

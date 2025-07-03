@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../models/product.dart';
 import '../models/cafe.dart';
@@ -124,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // Auto-scrolling Banner Slider
         SizedBox(
-          height: 160,
+          height: 160.h,
           child: PageView.builder(
             controller: _bannerController,
             itemCount: bannerImages.length,
@@ -143,75 +144,102 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // Saldo dan shortcut
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          padding: const EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          padding: EdgeInsets.all(16.r),
           decoration: BoxDecoration(
             color: const Color.fromARGB(255, 213, 208, 255),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(12.r),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildSaldoItem(
-                  Icons.account_balance_wallet, "Saldo", "Rp 50.000"),
-              _buildSaldoItem(Icons.arrow_upward, "Top Up", ""),
-              _buildSaldoItem(Icons.qr_code, "Bayar", ""),
+                Icons.account_balance_wallet,
+                "Saldo",
+                "Rp 50.000",
+              ),
+              _buildSaldoItem(
+                Icons.arrow_upward,
+                "Top Up",
+                "",
+              ),
+              _buildSaldoItem(
+                Icons.qr_code,
+                "Bayar",
+                "",
+              ),
             ],
           ),
         ),
 
-        const SizedBox(height: 24),
-        // Produk Horizontal Scroll
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Minuman spesial hari ini",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        SizedBox(height: 24.h),
+// Produk Horizontal Scroll
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Text(
+            "Minuman spesial hari ini",
+            style: TextStyle(
+              fontSize: 18.sp,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         SizedBox(
-          height: 200,
+          height: 200.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];
               return GestureDetector(
                 onTap: () => _openProduct(product),
                 child: Container(
-                  width: 160,
-                  margin: const EdgeInsets.only(right: 12),
+                  width: 160.w,
+                  margin: EdgeInsets.only(right: 12.w),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                     boxShadow: const [
-                      BoxShadow(blurRadius: 2, color: Colors.grey)
+                      BoxShadow(
+                        blurRadius: 2,
+                        color: Colors.grey,
+                      ),
                     ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(12)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(12.r)),
                         child: Image.asset(
                           product.imageAssetPath,
-                          height: 100,
+                          height: 100.h,
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8),
+                        padding: EdgeInsets.all(8.r),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(product.name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
-                            const SizedBox(height: 4),
-                            Text("Rp ${product.price}",
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 81, 64, 231))),
+                            Text(
+                              product.name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
+                            Text(
+                              "Rp ${product.price}",
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 81, 64, 231),
+                                fontSize: 13.sp,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -223,41 +251,43 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Promo menarik buat kamu",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Text(
+            "Promo menarik buat kamu",
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          ),
         ),
 
         SizedBox(
-          height: 120,
+          height: 120.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 child: Image.asset(
                   'assets/images/promo/promo5.jpeg',
-                  width: 100,
-                  height: 100,
+                  width: 100.w,
+                  height: 100.h,
                   fit: BoxFit.cover,
                 ),
               ),
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 child: Image.asset(
                   'assets/images/promo/promo2.jpeg',
-                  width: 100,
-                  height: 100,
+                  width: 100.w,
+                  height: 100.h,
                   fit: BoxFit.cover,
                 ),
               ),
               ClipRRect(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8.r),
                 child: Image.asset(
                   'assets/images/promo/promo3.jpeg',
-                  width: 100,
-                  height: 100,
+                  width: 100.w,
+                  height: 100.h,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -265,221 +295,128 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Cek yang menarik di CafeLog",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        ),
-
-        SizedBox(
-          width: 300,
-          height: 160,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
-              ),
-              borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
-              child: Image.asset(
-                'assets/images/bannerslide3.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Text(
+            "Cek yang menarik di CafeLog",
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           ),
         ),
 
+        SizedBox(height: 12.h),
+
         SizedBox(
-          width: 300,
-          height: 160,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
-              ),
-              borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
-              child: Image.asset(
-                'assets/images/bannerslide2.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
+          height: 160.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            children: [
+              _buildPromoBanner('assets/images/bannerslide3.jpeg'),
+              SizedBox(width: 12.w),
+              _buildPromoBanner('assets/images/bannerslide2.jpeg'),
+            ],
           ),
         ),
 
         // Produk Vertical List
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Menu Favorit",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Text(
+            "Menu Favorit",
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          ),
         ),
         ListView.builder(
           itemCount: products.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           itemBuilder: (context, index) {
             final product = products[index];
-            return GestureDetector(
-              onTap: () => _openProduct(product),
-              child: Card(
-                margin: const EdgeInsets.only(bottom: 12),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomLeft: Radius.circular(12)),
-                      child: Image.asset(product.imageAssetPath,
-                          width: 100, height: 100, fit: BoxFit.cover),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(product.name,
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold)),
-                            const SizedBox(height: 4),
-                            Text("Rp ${product.price}",
-                                style: const TextStyle(
-                                    color: Color.fromARGB(255, 81, 64, 231))),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                const Icon(Icons.store, size: 14),
-                                const SizedBox(width: 4),
-                                Text(product.cafeName),
-                                const SizedBox(width: 12),
-                                const Icon(Icons.location_on, size: 14),
-                                const SizedBox(width: 4),
-                                Text("${product.distanceKm} km"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
+            return _buildFavoriteCard(product, () => _openProduct(product));
           },
         ),
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Text("Ada yang baru nih",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        ),
-
-        SizedBox(
-          width: 300,
-          height: 160,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
-              ),
-              borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
-              child: Image.asset(
-                'assets/images/bannerslide1.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Text(
+            "Ada yang baru nih",
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           ),
         ),
 
         SizedBox(
-          width: 300,
-          height: 160,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
-              ),
-              borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
-              child: Image.asset(
-                'assets/images/bannerslide.jpeg',
-                fit: BoxFit.cover,
-              ),
-            ),
+          height: 180.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            children: [
+              _buildPromoBanner("assets/images/bannerslide1.jpeg"),
+              _buildPromoBanner("assets/images/bannerslide.jpeg"),
+            ],
           ),
         ),
 
         // List Cafe
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Text("Tempat nongki paling oke",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+          child: Text(
+            "Tempat nongki paling oke",
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          ),
         ),
         ListView.builder(
           itemCount: cafes.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.all(16.w),
           itemBuilder: (context, index) {
             final cafe = cafes[index];
             return GestureDetector(
               onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => CafeDetailPage(cafe: cafe))),
+                context,
+                MaterialPageRoute(builder: (_) => CafeDetailPage(cafe: cafe)),
+              ),
               child: Card(
-                margin: const EdgeInsets.only(bottom: 12),
+                margin: EdgeInsets.only(bottom: 12.h),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
                 child: Row(
                   children: [
                     ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomLeft: Radius.circular(12)),
-                      child: Image.asset(cafe.imageAssetPath,
-                          width: 100, height: 100, fit: BoxFit.cover),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        bottomLeft: Radius.circular(12.r),
+                      ),
+                      child: Image.asset(
+                        cafe.imageAssetPath,
+                        width: 100.w,
+                        height: 100.w,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.all(12),
+                        padding: EdgeInsets.all(12.w),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(cafe.name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16)),
-                            const SizedBox(height: 4),
+                            Text(
+                              cafe.name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                            SizedBox(height: 4.h),
                             Row(
                               children: [
-                                const Icon(Icons.location_on, size: 14),
-                                const SizedBox(width: 4),
-                                Text("${cafe.distanceKm} km"),
+                                Icon(Icons.location_on, size: 14.sp),
+                                SizedBox(width: 4.w),
+                                Text("${cafe.distanceKm} km",
+                                    style: TextStyle(fontSize: 14.sp)),
                               ],
                             ),
                           ],
@@ -492,29 +429,28 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
         ),
-        const SizedBox(height: 32),
 
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text("Special menu ",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold)),
         ),
 
         SizedBox(
-          width: 300,
-          height: 160,
+          width: 300.w,
+          height: 160.h,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
+                width: 10.0.w, // Ketebalan border
               ),
               borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
+                  BorderRadius.circular(12.r), // Optional: bikin sudut membulat
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
+                  19.r), // Cocokkan dengan borderRadius di atas
               child: Image.asset(
                 'assets/images/banner1.jpeg',
                 fit: BoxFit.cover,
@@ -524,20 +460,20 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         SizedBox(
-          width: 300,
-          height: 160,
+          width: 300.w,
+          height: 160.h,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.white, // Warna border
-                width: 10.0, // Ketebalan border
+                width: 10.0.w, // Ketebalan border
               ),
               borderRadius:
-                  BorderRadius.circular(12), // Optional: bikin sudut membulat
+                  BorderRadius.circular(12.r), // Optional: bikin sudut membulat
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(
-                  19), // Cocokkan dengan borderRadius di atas
+                  19.r), // Cocokkan dengan borderRadius di atas
               child: Image.asset(
                 'assets/images/banner.jpeg',
                 fit: BoxFit.cover,
@@ -567,6 +503,83 @@ class _HomeScreenState extends State<HomeScreen> {
             style: const TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.black87)),
       ],
+    );
+  }
+
+  Widget _buildPromoBanner(String imagePath) {
+    return Container(
+      width: 300.w,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.white,
+          width: 10.w,
+        ),
+        borderRadius: BorderRadius.circular(12.r),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(19.r),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFavoriteCard(Product product, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(12),
+                bottomLeft: Radius.circular(12),
+              ),
+              child: Image.asset(
+                product.imageAssetPath,
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(product.name,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 4),
+                    Text("Rp ${product.price}",
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 81, 64, 231))),
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        const Icon(Icons.store, size: 14),
+                        const SizedBox(width: 4),
+                        Text(product.cafeName),
+                        const SizedBox(width: 12),
+                        const Icon(Icons.location_on, size: 14),
+                        const SizedBox(width: 4),
+                        Text("${product.distanceKm} km"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

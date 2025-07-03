@@ -1,7 +1,7 @@
 name: cafelog
 description: A simple coffee marketplace app built with Flutter.
 
-publish_to: 'none' # Private app, not for pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,8 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.1.2
-
-  # UI & Utility
+  flutter_screenutil: ^5.9.3
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
@@ -21,7 +20,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
 
   assets:

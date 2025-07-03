@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import 'checkout_page.dart';
@@ -12,31 +13,54 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Keranjang"),
-          backgroundColor: const Color.fromARGB(255, 81, 64, 231),
-          foregroundColor: Colors.white),
+        title: Text(
+          "Keranjang",
+          style: TextStyle(fontSize: 20.sp),
+        ),
+        backgroundColor: const Color.fromARGB(255, 81, 64, 231),
+        foregroundColor: Colors.white,
+      ),
       body: cartProvider.cartItems.isEmpty
-          ? const Center(child: Text("Keranjang kosong"))
+          ? Center(
+              child: Text(
+                "Keranjang kosong",
+                style: TextStyle(fontSize: 16.sp),
+              ),
+            )
           : ListView.builder(
               itemCount: cartProvider.cartItems.length,
               itemBuilder: (context, index) {
                 final item = cartProvider.cartItems[index];
                 return ListTile(
-                  leading: Image.asset(item.product.imageAssetPath,
-                      width: 60, height: 60, fit: BoxFit.cover),
-                  title: Text(item.product.name),
-                  subtitle: Text("Qty: ${item.quantity}"),
+                  leading: Image.asset(
+                    item.product.imageAssetPath,
+                    width: 60.w,
+                    height: 60.h,
+                    fit: BoxFit.cover,
+                  ),
+                  title: Text(
+                    item.product.name,
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
+                  subtitle: Text(
+                    "Qty: ${item.quantity}",
+                    style: TextStyle(fontSize: 12.sp),
+                  ),
                   trailing: Text(
-                      "Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}"),
+                    "Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}",
+                    style: TextStyle(fontSize: 14.sp),
+                  ),
                 );
               },
             ),
       bottomNavigationBar: cartProvider.cartItems.isNotEmpty
           ? Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
+              padding: EdgeInsets.all(16.w),
+              decoration: BoxDecoration(
                 color: Colors.white,
-                boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
+                boxShadow: [
+                  BoxShadow(color: Colors.black12, blurRadius: 4.r)
+                ],
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -44,15 +68,23 @@ class CartPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Total",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
-                      Text("Rp ${cartProvider.totalPrice.toStringAsFixed(0)}",
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text(
+                        "Total",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Rp ${cartProvider.totalPrice.toStringAsFixed(0)}",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12.h),
                   ElevatedButton(
                     onPressed: cartProvider.cartItems.isEmpty
                         ? null
@@ -60,23 +92,28 @@ class CartPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => const CheckoutPage(),
-                              ),
+                                  builder: (_) => const CheckoutPage()),
                             );
                           },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 81, 64, 231),
+                      backgroundColor: const Color.fromARGB(255, 81, 64, 231),
                       foregroundColor: Colors.white,
-                      textStyle: const TextStyle(fontSize: 18),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      textStyle: TextStyle(fontSize: 18.sp),
+                      padding: EdgeInsets.symmetric(vertical: 16.h),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
                     ),
-                    child: const SizedBox(
+                    child: SizedBox(
                       width: double.infinity,
-                      child: Center(child: Text("Checkout")),
+                      child: Center(
+                        child: Text(
+                          "Checkout",
+                          style: TextStyle(fontSize: 16.sp),
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             )

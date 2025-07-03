@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -9,30 +10,36 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 40),
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/intro.png', // ganti dengan logo kamu
-                    height: 600,
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    'Temukan Minuman Terbaik di Sekitarmu',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                ],
+              SizedBox(height: 40.h),
+
+              // Logo / Gambar
+              SizedBox(
+                height: 300.h,
+                child: Image.asset(
+                  'assets/images/intro.png',
+                  fit: BoxFit.contain,
+                ),
               ),
+
+              SizedBox(height: 32.h),
+
+              // Judul
+              Text(
+                'Temukan Minuman Terbaik di Sekitarmu',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center,
+              ),
+
+              const Spacer(),
+
+              // Tombol Mulai
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -40,18 +47,23 @@ class WelcomeScreen extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, '/login');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 81, 64, 231),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: const Color(0xFF513FE7),
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                      borderRadius: BorderRadius.circular(14.r),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Mulai',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
+
+              SizedBox(height: 32.h),
             ],
           ),
         ),
